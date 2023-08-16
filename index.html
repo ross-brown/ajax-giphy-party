@@ -4,10 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Giphy Party!</title>
+  <link href="app-style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-  <h1>GIPHY PARTY</h1>
+
+  <div id="container">
+
+    <h1>GIPHY PARTY</h1>
 
   <form method="GET" action="">
     <input id="search-input" type="text" placeholder="Enter a search term">
@@ -16,6 +20,8 @@
     <button id="delete-btn">Clear Gifs</button>
 
   <div class="gifs"></div>
+
+  </div>
 
   <script src="https://unpkg.com/jquery"></script>
   <script src="app.js"></script>
