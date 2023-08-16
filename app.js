@@ -14,13 +14,7 @@ function showGif(url) {
 
 
 
-/**
- * Takes a user submission and submits a query to the Giphy API
- * @param {*} e The event triggering the function.
- */
-async function handleSubmit(e) {
-  e.preventDefault();
-
+async function fetchGif() {
   const searchValue = $("#search-input").val();
   const params = new URLSearchParams({ q: searchValue, api_key: API_KEY });
 
@@ -29,9 +23,28 @@ async function handleSubmit(e) {
 
   const randomNumber = Math.floor(Math.random() * 50);
 
-  const gifUrl = data.data[randomNumber].images.original.url;
+  return data.data[randomNumber].images.original.url;
+}
+
+
+
+
+/**
+ * Takes a user submission and submits a query to the Giphy API
+ * @param {*} e The event triggering the function.
+ */
+async function handleSubmit(e) {
+  e.preventDefault();
+
+  if (!$("#search-input").val()) {
+    alert("Please enter a valid term.");
+    return;
+  }
+
+  const gifUrl = await fetchGif();
 
   $("#search-input").val('');
+
   showGif(gifUrl);
 }
 
